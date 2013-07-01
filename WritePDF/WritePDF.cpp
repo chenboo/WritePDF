@@ -345,47 +345,42 @@ int main (int argc, char **argv)
 		
 		print_grid(pdf,page);
 //////////////////////////////////////////////////////////////////////////////////////
+		// table
+
+		int nLineNum = 5;
+		int nLineHeight = 20;
+
 		HPDF_Rect rectTable;
 		rectTable.left = 100;
 		rectTable.top = rectInfo.bottom - 40;
 		rectTable.right = nPageWidth - 100;
-		rectTable.bottom = rectTable.top - 20 * 3;
+		rectTable.bottom = rectTable.top - nLineHeight * nLineNum;
 
 		HPDF_Page_Rectangle (page, rectTable.left, rectTable.top, rectTable.right - rectTable.left,
 			rectTable.bottom - rectTable.top);
 		HPDF_Page_Stroke (page);
 
 		//line
-		HPDF_Page_MoveTo (page, rectTable.left, rectTable.top - 20);
-		HPDF_Page_LineTo (page, rectTable.right, rectTable.top - 20);
-		HPDF_Page_Stroke (page);
-		
-		HPDF_Page_MoveTo (page, rectTable.left, rectTable.top - 40);
-		HPDF_Page_LineTo (page, rectTable.right, rectTable.top - 40);
-		HPDF_Page_Stroke (page);
-		
-		HPDF_Page_MoveTo (page, rectTable.left, rectTable.top - 60);
-		HPDF_Page_LineTo (page, rectTable.right, rectTable.top - 60);
-		HPDF_Page_Stroke (page);
+		for (int i = 1; i <= nLineNum; i++) {
+			HPDF_Page_MoveTo (page, rectTable.left, rectTable.top - i * nLineHeight);
+			HPDF_Page_LineTo (page, rectTable.right, rectTable.top - i * nLineHeight);
+			HPDF_Page_Stroke (page);
+		}
 
+
+		int nColmnNum = 3;
+		for (int i = 1; i <= nLineNum; i++) {
+
+
+		}
 		//column
 		HPDF_Page_MoveTo (page, rectTable.left + (rectTable.right - rectTable.left) / 3, rectTable.top);
 		HPDF_Page_LineTo (page, rectTable.left + (rectTable.right - rectTable.left) / 3, rectTable.bottom);
 		HPDF_Page_Stroke (page);
 
-		//HPDF_Page_MoveTo (page, rectTable.left, rectTable.top - 40);
-		//HPDF_Page_LineTo (page, rectTable.right, rectTable.top - 40);
-		//HPDF_Page_Stroke (page);
-
-		//HPDF_Page_MoveTo (page, rectTable.left, rectTable.top - 60);
-		//HPDF_Page_LineTo (page, rectTable.right, rectTable.top - 60);
-		//HPDF_Page_Stroke (page);
-
-
-		
-
-
-
+		HPDF_Page_MoveTo (page, rectTable.left + (rectTable.right - rectTable.left) / 3 * 2, rectTable.top);
+		HPDF_Page_LineTo (page, rectTable.left + (rectTable.right - rectTable.left) / 3 * 2, rectTable.bottom);
+		HPDF_Page_Stroke (page);
 
 
 
